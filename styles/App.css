@@ -1,0 +1,43 @@
+* {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
+  }
+  
+  .govuk-header__logotype {
+    display: none;
+  }
+  
+  nav {
+    display: inline;
+    float: right;
+  }
+  
+  .govuk-header__navigation {
+    display: inline;
+  }
+  
+  .govuk-main-wrapper {
+    padding-top: 0;
+  }
+  
+  .govuk-body__padding-top {
+    padding-top: 2rem;
+  }
+  
+  .view-record {
+    display: flex;
+  }
+  
+  .view-record__link {
+    margin-left: auto;
+    text-align: right;
+  }
+  
+  /* Overrides word-break value in node_modules @hmpo frontend-react-compomnents package */
+  .dap-table th,
+  .dap-table td {
+    word-wrap: break-word;
+  }
+  
+  .vertical-dap-tab__bar__link {
+    word-break: break-word;
+  }

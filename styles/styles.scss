@@ -1,0 +1,20 @@
+$govuk-assets-path: '~govuk-frontend/govuk/assets/';
+$govuk-font-family: 'Helvetica', 'Arial', sans-serif;
+@import '~govuk-frontend/govuk/all';
+
+@include govuk-media-query($from: desktop) {
+  .govuk-header__content {
+    & > nav {
+      display: inline;
+
+      & > ul {
+        display: inline;
+        float: right;
+      }
+    }
+  }
+}
+
+.govuk-heading-l {
+  margin-bottom: 1em;
+}
