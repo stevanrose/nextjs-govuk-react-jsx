@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import * as yup from "yup";
 import PageTemplate from "./PageTemplate";
-import { Formik, Form } from "formik";
+import { Formik, Form, Field } from "formik";
 import { Button, Input, Fieldset } from "govuk-react-jsx";
 
 const validationSchema = yup.object().shape({
@@ -24,6 +24,9 @@ export default function EmailAddress({
             onSubmit={(values) => {
               setFormData(values);
               direction === "back" ? prevStep() : nextStep();
+              console.log("Data: ", JSON.stringify(values));
+              console.log("Next Step: ", nextStep);
+
             }}
             validationSchema={validationSchema}
           >
@@ -35,14 +38,14 @@ export default function EmailAddress({
                     className: "govuk-fieldset__legend--m",
                   }}
                 >
-                  <Input
-                    id="email"
+                  <Field
+                    as={Input}
+                    name='email'
                     label={{
-                      children: "Email Address",
+                      children: 'Email address',
                     }}
-                    name="email"
-                    type="text"
-                    {...(errors.email && {
+                    margin='normal'
+                    {...(touched.email && errors.email && {
                       errorMessage: {
                         children: errors.email,
                       },

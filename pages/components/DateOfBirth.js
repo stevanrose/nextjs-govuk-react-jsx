@@ -5,13 +5,16 @@ import { Formik, Form, Field } from "formik";
 import { Button, Input, Fieldset } from "govuk-react-jsx";
 
 const validationSchema = yup.object().shape({
-  forenames: yup.string().required("Forename(s) is required"),
-  surname: yup.string().required("Surname is required"),
+  dob: yup.string().required("Date of Birth is required"),
 });
 
-export default function PassportHolder({ formData, setFormData, nextStep }) {
-  const [direction, setDirection] = useState("forward");
-
+export default function DateOfBirth({
+  formData,
+  setFormData,
+  nextStep,
+  prevStep,
+}) {
+  const [direction, setDirection] = useState("back");
   return (
     <PageTemplate heading="Create a Lost Stolen Record">
       <div className="govuk-grid-row">
@@ -20,9 +23,10 @@ export default function PassportHolder({ formData, setFormData, nextStep }) {
             initialValues={formData}
             onSubmit={(values) => {
               setFormData(values);
-              nextStep();
+              direction === "back" ? prevStep() : nextStep();
               console.log("Data: ", JSON.stringify(values));
               console.log("Next Step: ", nextStep);
+
             }}
             validationSchema={validationSchema}
           >
@@ -34,36 +38,26 @@ export default function PassportHolder({ formData, setFormData, nextStep }) {
                     className: "govuk-fieldset__legend--m",
                   }}
                 >
-                  {/* <Fieldset.Legend>Forename(s)</Fieldset.Legend> */}
                   <Field
                     as={Input}
-                    name='forenames'
+                    name='dob'
                     label={{
-                      children: 'Forename(s)',
+                      children: 'Date of Birth',
                     }}
                     margin='normal'
-                    {...(touched.forenames && errors.forenames && {
+                    {...(touched.dob && errors.dob && {
                       errorMessage: {
-                        children: errors.forenames,
+                        children: errors.dob,
                       },
                     })}
                   />
 
-                  <Field
-                    as={Input}
-                    name='surname'
-                    label={{
-                      children: 'Surname',
-                    }} 
-                    margin='normal'
-                    {...(touched.surname && errors.surname && {
-                      errorMessage: {
-                        children: errors.surname,
-                      },
-                    })}
-                  />
-
-                  <Button type="submit">Continue</Button>
+                  <Button type="submit" onClick={() => setDirection("back")}>
+                    Back
+                  </Button>
+                  <Button type="submit" onClick={() => setDirection("forward")}>
+                    Submit
+                  </Button>
                 </Fieldset>
               </Form>
             )}
