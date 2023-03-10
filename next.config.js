@@ -23,7 +23,7 @@ const nextConfig = {
     disableStaticImages: true,
   },
   poweredByHeader: false,
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
 };
 
