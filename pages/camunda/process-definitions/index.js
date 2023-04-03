@@ -1,13 +1,13 @@
 import React from "react";
-import PageTemplate from "../Components/PageTemplate";
+import PageTemplate from "../../Components/PageTemplate";
 
-function DeployedProcesses({ data }) {
-  console.log(JSON.stringify(data));
+function Index({ data }) {
   return (
-    <PageTemplate heading="Workflow - Deployed Processes">
+    <PageTemplate
+      heading="Workflow - Processes Definitions">
       <table className="govuk-table">
         <caption className="govuk-table__caption govuk-table__caption--m">
-          Deployed Processes
+          Processes Definitions
         </caption>
         <thead className="govuk-table__head">
           <tr className="govuk-table__row">
@@ -17,7 +17,10 @@ function DeployedProcesses({ data }) {
             <th scope="col" className="govuk-table__header">
               Name
             </th>
-            <th scope="col" className="govuk-table__header">
+            <th
+              scope="col"
+              className="govuk-table__header govuk-table__header--numeric"
+            >
               Version
             </th>
           </tr>
@@ -29,7 +32,9 @@ function DeployedProcesses({ data }) {
               <tr className="govuk-table__row">
                 <td className="govuk-table__cell">{d.id}</td>
                 <td className="govuk-table__cell">{d.name}</td>
-                <td className="govuk-table__cell">{d.version}</td>
+                <td className="govuk-table__cell govuk-table__cell--numeric">
+                  {d.version}
+                </td>
               </tr>
             ))}
         </tbody>
@@ -46,4 +51,4 @@ export async function getServerSideProps() {
   return { props: { data } };
 }
 
-export default DeployedProcesses;
+export default Index;
